@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+		var tryCount = 0;
+		var maxTryCount = 3;
+		var playerNumber = 1;
+		function readInt(){
+			return document.getElementById("userAnswer").value;
+			//return (number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+		}
+
+		function writeNumber(text){
+			document.getElementById("number").innerHTML = text;
+		}
+
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+
+		function guess(){
+
+			
+			var userAnswer = readInt();
+			if(userAnswer == 'q'){
+				write("<b>Спасибо за игру!</b>");
+				hide("button");
+				hide("userAnswer");
+				hide("number");
+			}
+			userAnswer = parseInt(userAnswer);
+
+			if(userAnswer == answer){
+				write("Поздравляю, вы угадали! Победил игрок номер " + playerNumber);
+				hide("button");
+				hide("userAnswer");
+				hide("number");
+			} else if(userAnswer > answer){
+				write("Вы ввели слишком большое число<br>Введите число от 1 до 100");
+			} else if(userAnswer < answer){
+				write("Вы ввели слишком маленькое число<br>Введите число от 1 до 100");				
+			}
+
+			if(playerNumber == 1)
+				playerNumber = 2;
+			else
+				playerNumber = 1;
+			writeNumber("Ходит игрок номер " + playerNumber);		
+			
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="#">Угадайка</a>
+		<a href="randPassword.html">Генератор паролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка</h1>
+
+			<div class="box">
+				<p id="number"></p>
+				<p id="info">Угадайте число от 0 до 100 <br>В игре учавствуют 2 игрока<br> Ходит игрок номер 1<br>Для выхода из игры введите "q" </p>
+				<input type="text" id="userAnswer">
+				<br>
+				<a href="#" onClick="guess();" id="button">Начать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Vitaliy Shalakhov
+<div>
+
+
+</body>
+</html>
